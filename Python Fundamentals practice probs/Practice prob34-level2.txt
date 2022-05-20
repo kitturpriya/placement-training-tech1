@@ -1,0 +1,34 @@
+#lex_auth_0127136426924195841210
+
+def check_well_formatted(input_item,list_label):
+   
+    if(isinstance(input_item,list)==True and len(input_item)>=2 and input_item[0] in list_label):
+        count=0
+        for i in range(1,len(input_item)):
+            if(isinstance(input_item[i],list)==True or isinstance(input_item[i],str)==True):
+                count+=1
+        if(count==len(input_item)-1):
+            count1=0
+            for i in range(1,len(input_item)):
+                x=True
+                if(isinstance(input_item[i],list)==True):
+                     x=check_well_formatted(input_item[i],list_label)
+                     if(x==False):
+                         count1+=1
+            if(count1==0) :
+                return True
+            else:
+                return False
+        else:
+            return False
+    else:
+        return False
+ 
+
+input_list1=['Ant', ['Apple', 'Mango'], ['Orange']]
+list_label1=['Ant', 'Apple', 'Orange']
+result=check_well_formatted(input_list1,list_label1)
+if result is True:
+    print("Well formatted")
+else:
+    print("Not Well formatted")

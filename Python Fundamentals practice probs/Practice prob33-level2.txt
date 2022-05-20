@@ -1,0 +1,106 @@
+#lex_auth_0127136373866577921209
+def number_name(num):
+    name=''
+    if(num==1):
+        name+='one'
+    elif(num==2):
+        name+='two'
+    elif(num==3):
+        name+='three'
+    elif(num==4):
+        name+='four'
+    elif(num==5):
+        name+='five'
+    elif(num==6):
+        name+='six'
+    elif(num==7):
+        name+='seven'
+    elif(num==8):
+        name+='eight'
+    elif(num==9):
+        name+='nine'
+    elif(num==10):
+        name+='ten'
+    elif(num==11):
+        name+='eleven'
+    elif(num==12):
+        name+='twelve'
+    elif(num==13):
+        name+='thirteen'
+    elif(num==14):
+        name+='fourteen'
+    elif(num==15):
+        name+='fifteen'
+    elif(num==20):
+        name+='twenty'
+    elif(num==30):
+        name+='thirty'
+    elif(num==50):
+        name+='fifty'
+    else:
+        name+='one thousand'
+    
+    return name         
+def twodigit_name(digits,number):
+    name=''
+    if(number<20 and number>15):
+        n=number_name(digits[1])
+        if(n[-1]=='t'):
+            name+=n+'een'
+        else:
+            name+=n+'teen'
+        return name
+    elif(number<=15):
+        return number_name(number)
+    else:
+        if(number==30 or number==20 or number==50):
+            name+=number_name(number)
+        else:
+            for i in range(len(digits)):
+                if(i==0):
+                    if(digits[i]==2 or digits[i]==3 or digits[i]==5):
+                        num=digits[i]*10
+                        name+=number_name(num)
+                    else:
+                        n=number_name(digits[i])
+                        if(n[-1]=='t'):
+                            name+=n+'y'
+                        else:
+                            name+=n+'ty'
+                else:
+                    name+=' '+number_name(digits[i])
+    return name    
+                
+def integer_to_english(number):
+    #start writing your code here
+    if(number>0 and number<=1000):
+        digits=[]
+        temp=number
+        while(temp!=0):
+            digits.append(temp%10)
+            temp=temp//10
+        digits=digits[::-1]
+        name=''
+        if(len(digits)==1):
+            name+=number_name(number)
+            return name
+        elif(len(digits)==2):
+            return twodigit_name(digits,number)
+            
+        elif(len(digits)==3):
+            if(digits[1]==0 and digits[2]==0):
+                name+=number_name(digits[0])+' hundred'
+            else:
+                name+=number_name(digits[0])+' hundred and '
+                num=(10*digits[1])+digits[2]
+                name+=twodigit_name(digits[1:],num)
+            return name
+        else:
+            return number_name(number)
+            
+    else:
+        return -1
+        
+
+number=1000
+print(integer_to_english(number))

@@ -1,0 +1,30 @@
+def sum_of_elements(num_list,number):
+  
+    
+  result_sum = 0
+  for i in range(len(num_list)):
+      if(i==0):
+        if(num_list[i]==number or num_list[i+1]==number):
+          result_sum+=0
+        else:
+          result_sum+=num_list[i]
+      elif(i==len(num_list)-1):
+        if(num_list[i]==number or num_list[i-1]==number):
+          result_sum+=0
+        else:
+          result_sum+=num_list[i]
+      else:
+        if(num_list[i]==number or num_list[i-1]==number or num_list[i+1]==number):
+          result_sum+=0
+        else:
+            result_sum+=num_list[i]
+
+          
+            
+            
+            
+  return result_sum
+      
+num_list=[1, 3, 5, 7, 10, 1, 7, 100]
+number=7
+print(sum_of_elements(num_list, number))

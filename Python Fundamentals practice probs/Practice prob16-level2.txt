@@ -1,0 +1,17 @@
+#lex_auth_0127136084107673601177
+
+def rotate_list(input_list,n):
+    #start writing your code here
+    leng=len(input_list)
+    output_list=[0]*leng
+    for i in range(leng):
+        if((i+n)<=(leng-1)):
+            output_list[i+n]=input_list[i]
+        else:
+            output_list[i-(leng-n)]=input_list[i]
+    
+    return output_list
+
+input_list= [1,2,3,4,5,6]
+output_list=rotate_list(input_list,4)
+print(output_list)

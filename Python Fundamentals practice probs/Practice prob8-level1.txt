@@ -1,0 +1,15 @@
+#lex_auth_0127135929511936001157
+
+def calculate_net_amount(trans_list):
+    #start writing your code her
+    net_amount=0
+    for i in range(len(trans_list)):
+        a,b=trans_list[i].split(":")
+        if(a=="D"):
+            net_amount+=int(b)
+        else:
+            net_amount-=int(b)
+    return net_amount
+
+trans_list=["D:300","D:200","W:200","D:100"]
+print(calculate_net_amount(trans_list))

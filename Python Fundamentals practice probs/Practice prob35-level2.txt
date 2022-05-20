@@ -1,0 +1,86 @@
+#lex_auth_0127136447430656001216
+def roman(num):
+    roman=''
+    if(num==1):
+        roman+='I'
+    elif(num==2):
+        roman+='II'
+    elif(num==3):
+        roman+='III'
+    elif(num==4):
+        roman+='IV'
+    elif(num==5):
+        roman+='V'
+    elif(num==10):
+        roman+='X'
+    elif(num==50):
+        roman+='L'
+    elif(num==100):
+        roman+='C'
+    elif(num==500):
+        roman+='D'
+    elif(num==1000):
+        roman+='M'
+    return roman
+def convert_to_roman(num):
+    #Start writing your code here
+    strnum=str(num)
+    if(len(strnum)==2):
+        n1=int(strnum[-1])
+    elif(len(strnum)==3):
+        n1=(10*int(strnum[1]))+int(strnum[2])
+    elif(len(strnum)==4):
+        n1=(100*int(strnum[1]))+(10*int(strnum[2]))+int(strnum[3])
+    roman_name=''
+    if(num<10):
+        diff=num-5
+        if(diff>0 and diff!=4):
+            roman_name+=roman(5)+roman(diff)
+        elif(diff==4):
+            roman_name+=roman(5-diff)+roman(10)
+        else:
+            roman_name+=roman(num)
+    elif(num<50):
+        mult=num//10
+        res=convert_to_roman(n1)
+        diff=abs(num-50)
+        if(diff<=10):
+            roman_name+=roman(10)+roman(50)+res
+        else:
+            n=roman(10)*mult
+            roman_name+=n+res
+    elif(num<100):
+        mult=((num-50)//10)
+        res=convert_to_roman(n1)
+        diff=abs(num-100)
+        if(diff<=10):
+            roman_name+=roman(10)+roman(100)+res
+        else:
+            n=roman(10)*mult
+            roman_name+=roman(50)+n+res
+    elif(num<1000):
+        res=convert_to_roman(n1)
+        if(num<500):
+            diff=abs(num-500)
+            if(diff>100):
+                mult=num//100
+                n=roman(100)*mult
+                roman_name=n+res
+            else:
+                roman_name+=roman(100)+roman(500)+res
+        else:
+            diff=abs(num-1000)
+            if(diff>100):
+                mult=(num-500)//100
+                n=roman(100)*mult
+                roman_name=roman(500)+n+res
+            else:
+                roman_name+=roman(100)+roman(1000)+res
+    else:
+        res=convert_to_roman(n1)
+        mult=num//1000
+        n=roman(1000)*mult
+        roman_name=n+res
+    return roman_name   
+for num in range(499,500):    
+    print(num," : ",convert_to_roman(num))
