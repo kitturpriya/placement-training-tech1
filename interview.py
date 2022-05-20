@@ -1,0 +1,29 @@
+def interview(list,time):
+    total_time=sum(list)
+    count=0
+    if(list[0]<=5):
+        count+=1
+    if(list[1]<=5):
+        count+=1
+    if(list[2]<=10):
+        count+=1
+    if(list[3]<=10):
+        count+=1
+    if(list[4]<=15):
+        count+=1
+    if(list[5]<=15):
+        count+=1
+    if(list[6]<=20):
+        count+=1
+    if(list[7]<=20):
+        count+=1
+    if(total_time<=120):
+        count+=1
+    res=''
+    if(count==9):
+        res+='qualified'
+    else:
+        res+='disqualified'
+    return res
+x=interview([2,3,8,6,5,12,10,18],164)
+print(x)
